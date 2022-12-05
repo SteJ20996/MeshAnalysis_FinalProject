@@ -11,6 +11,15 @@ void compute_n2e_adj(const unsigned n, const Triangles &conn,
   // reserve for each of them with a reasonable upper bound
 
   // your code
+  int idx = 0;
+  std::for_each(
+    conn.to_vector().begin(),conn.to_vector().end(),[&](const std::array<int,3> &x ){
+      adj[x[0]].push_back(idx);
+      adj[x[1]].push_back(idx);
+      adj[x[2]].push_back(idx);
+      idx++;
+    }
+  );
 }
 
 void compute_avg_normals(const SphCo &points, const Triangles &conn,
